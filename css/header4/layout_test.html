@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>basic :: Layout Test</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400&display=swap">
+<style>
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, table, dl, dd {
+	margin: 0;
+	padding: 0;
+}
+h1 {
+	font-size: 16px;
+}
+a {
+	text-decoration: none;
+	color: #000;
+}
+ul, ol {
+	list-style: none;
+}
+img {
+	max-width: 100%;
+	vertical-align: top;
+	border: none;
+}
+body {
+	line-height: 1;
+	font-family: "Open Sans", "Noto Sans KR", sans-serif;
+	font-size: 1em;
+	color: #000;
+	text-align: center;
+}
+#header {
+	min-width: 1260px;
+	height: 70px;
+	background-color: #0e216d;
+}
+#header .menu {
+	position: relative;
+	width: 1260px;
+	margin: 0 auto;
+}
+#logo {
+	float: left;
+	margin-top: 25px;
+}
+#gnb {
+	float: right;
+	font-size: 0;
+}
+#gnb > ul > li {
+	display: inline-block;
+	position: relative;
+	margin-left: 40px;
+	line-height: 69px;
+}
+#gnb > ul > li > a {
+	color: #fff;
+	font-size: 14px;
+	font-weight: bold;
+}
+#gnb > ul > li.brand,
+#gnb > ul > li.shop {
+	line-height: 0;
+}
+#gnb > ul > li.brand a,
+#gnb > ul > li.shop a {
+	display: block;
+	padding: 20px 15px;
+	border: 1px solid #fff;
+}
+#gnb li ul {
+	display: none;
+	position: absolute;
+	left: 50%;
+	top: 70px;
+	width: 170px;
+	transform: translateX(-50%);
+}
+#gnb li li a {
+	display: block;
+	padding: 0 20px;
+	line-height: 35px;
+	text-align: left;
+	font-size: 14px;
+	color: #fff;
+	background-color: #0e216d;
+	border-top: 1px solid #405060;
+}
+
+#content {
+	padding: 20px;
+	min-width: 1000px;
+	height: 1000px;
+	background-color: #eee;
+	color: #666;
+}
+</style>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$("#gnb > ul > li").mouseenter(function(){
+			$(this).find("ul").slideDown(300);
+		});
+		$("#gnb > ul > li").mouseleave(function(){
+			$(this).find("ul").slideUp(300);
+		});
+	})
+</script>
+</head>
+
+<body>
+	<header id="header">
+		<div class="menu">
+			<h1 id="logo"><a href=""><img src="images/logo.png" alt="logo"></a></h1>
+			<nav id="gnb">
+				<ul>
+					<li>
+						<a href="">BRAND STORY</a>
+						<ul>
+							<li><a href="">브랜드 소개</a></li>
+							<li><a href="">모델소개</a></li>
+							<li><a href="">파크랜드 AD</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="">STYLE</a>
+						<ul>
+							<li><a href="">LOOKBOOK</a></li>
+							<li><a href="">COORDI BOOK</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="">STORE</a>
+						<ul>
+							<li><a href="">매장검색</a></li>
+							<li><a href="">매장개설문의</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="">NEWS & EVENT</a>
+						<ul>
+							<li><a href="">NEWS</a></li>
+							<li><a href="">EVENT</a></li>
+							<li><a href="">PRESS</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="">COMMUNITY</a>
+						<ul>
+							<li><a href="">패션노하우</a></li>
+							<li><a href="">월페이퍼</a></li>
+							<li><a href="">ON-AIR</a></li>
+							<li><a href="">드림옷장</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="">C/S CENTER</a>
+						<ul>
+							<li><a href="">멤버스 가입</a></li>
+							<li><A href="">A/S안내</a></li>
+							<li><a href="">고객상담</a></li>
+						</ul>
+					</li>
+					<li class="brand"><a href="">FAMILY BRAND</a></li>
+					<li class="shop"><a href="">ONLINE SHOP</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<section id="content">
+		content
+	</section>
+</body>
+</html>

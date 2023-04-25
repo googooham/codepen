@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>basic :: Layout Test</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<style>
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, table, dl, dd {
+	margin: 0;
+	padding: 0;
+}
+h1 {
+	font-size: 16px;
+}
+a {
+	text-decoration: none;
+	color: #000;
+}
+ul, ol {
+	list-style: none;
+}
+img {
+	max-width: 100%;
+	vertical-align: top;
+	border: none;
+}
+body {
+	line-height: 1;
+	font-family: "Open Sans", "Noto Sans KR", sans-serif;
+	font-size: 1em;
+	color: #000;
+}
+.main_slider {
+	position: relative;
+	margin: 0 auto;
+	width: 740px;
+	height: 610px;
+	overflow: hidden;
+}
+.main_slider .swiper-container {
+	width: 100%;
+	height: 100%;
+}
+.main_slider .swiper-container .swiper-slide {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	font-size: 1.125em;
+	background: #fff;
+}
+.main_slider .swiper-container .swiper-slide img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.main_slider .menu_container {
+	display: flex;
+	align-items: center;
+	position: absolute;
+	bottom: 80px;
+	left: 75px;
+	z-index: 100;
+	font-size: 0;
+}
+.main_slider .menu_container .controller a {
+	display: inline-block;
+	width: 38px;
+	height: 38px;
+	overflow: hidden;
+	text-indent: -9999px;
+	border: 1px solid rgba(255,255,255,.3);
+	border-left: none;
+}
+.main_slider .menu_container .controller a:first-child {
+	border-left: 1px solid rgba(255,255,255,.3);
+}
+.main_slider .menu_container .controller a.prev {
+	background: url(images/btn_left_arrow.png) no-repeat;
+}
+.main_slider .menu_container .controller a.next {
+	background: url(images/btn_right_arrow.png) no-repeat;
+}
+#pause_play.pause {
+	background: url(images/btn_pause.png) no-repeat 0 0;
+}
+#pause_play.play {
+	background: url(images/btn_play.png) no-repeat 0 0;
+}
+.main_slider .menu_container .account {
+	margin-left: 20px;
+	font-size: 16px;
+	font-weight: 700;
+	color: #fff;
+}
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+	$(function(){
+	var mainSwiper=new Swiper(".mainSwiper", {
+		speed: 1200,
+		// effect: "fade",
+		fadeEffect: {
+			crossFade: true
+		},
+
+		loop: true,
+		autoplay: {
+			delay: 3000,
+			disableOnInteraction: false // 클릭해도 자동 O
+		},
+		on: {
+			init: function(){
+				// console.log(this.slides.length, this.realIndex);
+				$(".main_slider .account .current").text(this.realIndex+1);
+				$(".main_slider .account .total").text(this.slides.length);
+			},
+			slideChange: function(){
+				// console.log(this.slides.length, this.realIndex);
+				$(".main_slider .account .current").text(this.realIndex+1);
+			}
+		}
+	});
+
+	$(".main_slider .prev").click(function(e){
+		e.preventDefault();
+		mainSwiper.slidePrev();
+	});
+	$(".main_slider .next").click(function(e){
+		e.preventDefault();
+		mainSwiper.slideNext();
+	});
+	$("#pause_play").click(function(e){
+		e.preventDefault();
+
+		if($(this).hasClass("play")){
+			$(this).removeAttr("class").addClass("pause").text("pause");
+			mainSwiper.autoplay.start();
+		}
+		else{
+			$(this).removeAttr("class").addClass("play").text("play");
+			mainSwiper.autoplay.stop();
+		}
+	})
+});
+</script>
+</head>
+
+<body>
+	<div class="main_slider">
+		<div class="swiper-container mainSwiper">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide"><img src="images/slider1.jpg" alt="slider1"></div>
+				<div class="swiper-slide"><img src="images/slider2.jpg" alt="slider2"></div>
+				<div class="swiper-slide"><img src="images/slider3.jpg" alt="slider3"></div>
+				<div class="swiper-slide"><img src="images/slider4.jpg" alt="slider4"></div>
+				<div class="swiper-slide"><img src="images/slider5.jpg" alt="slider5"></div>
+				<div class="swiper-slide"><img src="images/slider6.jpg" alt="slider6"></div>
+				<div class="swiper-slide"><img src="images/slider7.jpg" alt="slider7"></div>
+				<div class="swiper-slide"><img src="images/slider8.jpg" alt="slider8"></div>
+			</div>
+		</div>
+		<div class="menu_container">
+			<div class="controller">
+				<a href="" class="prev">previous</a>
+				<a href="" class="next">next</a>
+				<a href="" id="pause_play" class="pause">pause</a>
+			</div>
+			<div class="account">
+				<span class="current">current</span> / <span class="total">total</span>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
